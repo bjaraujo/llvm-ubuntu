@@ -25,12 +25,12 @@ jobs:
         run: cmake --install llvm-project/build --prefix $GITHUB_WORKSPACE/llvm+clang+lld-${{ env.LLVM_VERSION }}-x86_64-ubuntu-release
  
       - name: Zip LLVM
-        run: Compress-Archive -Path $GITHUB_WORKSPACE/llvm+clang+lld-${{ env.LLVM_VERSION }}-x86_64-ubuntu-release -DestinationPath llvm+clang+lld-${{ env.LLVM_VERSION }}-x86_64-ubuntu-release.zip
-    
+        run: tar -cvzf llvm+clang+lld-${{ env.LLVM_VERSION }}-x86_64-ubuntu-release.tar.gz $GITHUB_WORKSPACE/llvm+clang+lld-${{ env.LLVM_VERSION }}-x86_64-ubuntu-release
+        
       - name: Save Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: LLVM
-          path: llvm+clang+lld-${{ env.LLVM_VERSION }}-x86_64-ubuntu-release.zip
+          path: llvm+clang+lld-${{ env.LLVM_VERSION }}-x86_64-ubuntu-release.tar.gz
           retention-days: 3
 
